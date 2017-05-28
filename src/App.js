@@ -54,6 +54,11 @@ class App extends Component {
     }
 
     render() {
+        const productList = this.state.products.map((product) =>
+            <ProductItem key={product.id}
+                         productInfo={product}/>
+        );
+
         function ListItem(props) {
             function handleClick() {
                 console.log('test', arguments);
@@ -73,11 +78,7 @@ class App extends Component {
             <ListItem key={category.id}
                       value={category.title}/>
         );
-        const productList = this.state.products.map((products) =>
-            <ProductItem key={products.id}
-                         value={products.title}
-            productInfo={products.description}/>
-        );
+
         return (
             <div>
                 <ul className="category-list">

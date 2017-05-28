@@ -5,3 +5,8 @@ body {
   font-size: 14px;
   --font: 1rem;
 }
+
+.container {
+  max-width: 768px;
+  margin: auto;
+}
