@@ -1,27 +1,16 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import CategoryItem from '../categoryItem/CategoryItem'
 import './Categories.css';
 
 class Categories extends Component {
 
     render() {
-        function CategoryItem(props) {
-            function handleClick() {
-                console.log('test', arguments);
-            }
-
-            return (
-                <li>
-                    <h2>
-                        <button onClick={handleClick}>{props.value}</button>
-                    </h2>
-                </li>
-            );
-        }
-
-        const categoryList = this.props.categoriesData.map((category) =>
+        const categoryList = this.props.categoriesData.map(category =>
             <CategoryItem key={category.id}
-                      value={category.title}/>
+                          value={category.title}
+                          id={category.id}
+                          clickHandler={this.props.handler}/>
         );
 
         return (
@@ -33,7 +22,8 @@ class Categories extends Component {
 }
 
 Categories.propTypes = {
-    categoriesData: PropTypes.array.isRequired
+    categoriesData: PropTypes.array.isRequired,
+    handler: PropTypes.func
 };
 
 export default Categories;

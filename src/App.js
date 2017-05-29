@@ -4,24 +4,28 @@ import Products from './components/products/Products';
 import './App.css';
 
 const CATEGORIES_API = 'https://api.gousto.co.uk/products/v2.0/categories';
-const PRODUCTS_API = 'https://api.gousto.co.uk/products/v2.0/products?includes[]=categories&includes[]=attributes&sort=position&image_sizes[]=365&i mage_sizes[]=400&period_id=120';
+const PRODUCTS_API = 'https://api.gousto.co.uk/products/v2.0/products?includes[]=categories&includes[]=attributes&sort=position&image_sizes[]=365&image_sizes[]=400&period_id=120';
 
 class App extends Component {
     constructor(props) {
         super(props);
 
-        this.saveApiData = this.saveApiData.bind(this);
+        this.saveCategoryApiData = this.saveCategoryApiData.bind(this);
+        this.filterProducts = this.filterProducts.bind(this);
+        this.allProducts = [];
         this.state = {
             categories: [],
             products: []
         };
     }
 
-    saveApiData(data) {
-        this.setState({categories: data});
+    saveCategoryApiData(data) {
+        let categories = data.filter(category => !category.hidden);
+        this.setState({categories});
     }
 
     saveProductApiData(data) {
+        this.allProducts = data;
         this.setState({products: data});
     }
 
@@ -40,7 +44,7 @@ class App extends Component {
                     }
 
                     categoryData.json().then(data => {
-                        this.saveApiData(data.data);
+                        this.saveCategoryApiData(data.data);
                     });
 
                     productData.json().then(data => {
@@ -53,10 +57,22 @@ class App extends Component {
             });
     }
 
+    filterProducts(categoryId) {
+        let products = this.allProducts.filter(product => {
+            let required = false;
+            product.categories.forEach(category => {
+                required = required || category.id === categoryId;
+            });
+            return required;
+        });
+        this.setState({products});
+    }
+
     render() {
         return (
             <div className="app">
-                <Categories categoriesData={this.state.categories}/>
+                <Categories categoriesData={this.state.categories}
+                            handler={this.filterProducts}/>
                 <input type="text"/>
                 <Products productsData={this.state.products}/>
             </div>
