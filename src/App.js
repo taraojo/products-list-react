@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import Categories from './components/categories/Categories';
 import Products from './components/products/Products';
+import api from './apiEndpoints.json';
 import './App.css';
-
-const CATEGORIES_API = 'https://api.gousto.co.uk/products/v2.0/categories';
-const PRODUCTS_API = 'https://api.gousto.co.uk/products/v2.0/products?includes[]=categories&includes[]=attributes&sort=position&image_sizes[]=365&image_sizes[]=400&period_id=120';
 
 class App extends Component {
     constructor(props) {
@@ -30,8 +28,8 @@ class App extends Component {
     }
 
     componentDidMount() {
-        let categories = fetch(CATEGORIES_API);
-        let products = fetch(PRODUCTS_API);
+        let categories = fetch(api.CATEGORIES_API);
+        let products = fetch(api.PRODUCTS_API);
 
         Promise.all([categories, products])
             .then(response => {
