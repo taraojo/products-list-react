@@ -70,7 +70,7 @@ class App extends Component {
         return (
             <div className="app">
                 <Categories categoriesData={this.state.categories}
-                            handler={this.filterProducts}/>
+                            clickHandler={this.filterProducts}/>
                 <input type="text"/>
                 <Products productsData={this.state.products}/>
             </div>

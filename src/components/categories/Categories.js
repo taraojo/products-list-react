@@ -10,7 +10,7 @@ class Categories extends Component {
             <CategoryItem key={category.id}
                           value={category.title}
                           id={category.id}
-                          clickHandler={this.props.handler}/>
+                          clickHandler={this.props.clickHandler}/>
         );
 
         return (
@@ -23,7 +23,7 @@ class Categories extends Component {
 
 Categories.propTypes = {
     categoriesData: PropTypes.array.isRequired,
-    handler: PropTypes.func
+    clickHandler: PropTypes.func
 };
 
 export default Categories;
