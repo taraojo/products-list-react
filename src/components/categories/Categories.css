@@ -1,0 +1,27 @@
+.category-list {
+    list-style: none;
+    padding: 0;
+}
+
+.category-list li {
+    display: inline-block;
+    padding: 0 1.5rem .75rem 0;
+}
+
+.category-list h2 {
+    font-size: var(--font);
+    margin: 0;
+}
+
+.category-list button {
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    font-size: var(--font);
+}
+
+.category-list button.active {
+    font-weight: bold;
+    text-decoration: underline;
+}

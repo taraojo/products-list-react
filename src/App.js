@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import ProductItem from './components/productItem/ProductItem';
+import Categories from './components/categories/Categories';
+import Products from './components/products/Products';
 import './App.css';
 
 const CATEGORIES_API = 'https://api.gousto.co.uk/products/v2.0/categories';
@@ -10,7 +11,6 @@ class App extends Component {
         super(props);
 
         this.saveApiData = this.saveApiData.bind(this);
-        //this.handleClick = this.handleClick.bind(this);
         this.state = {
             categories: [],
             products: []
@@ -54,40 +54,11 @@ class App extends Component {
     }
 
     render() {
-        const productList = this.state.products.map((product) =>
-            <ProductItem key={product.id}
-                         productInfo={product}/>
-        );
-
-        function ListItem(props) {
-            function handleClick() {
-                console.log('test', arguments);
-            }
-
-            return (
-                <li>
-                    <h2>
-                        <button onClick={handleClick}>{props.value}</button>
-                    </h2>
-                </li>
-            );
-        }
-
-
-        const categoryList = this.state.categories.map((category) =>
-            <ListItem key={category.id}
-                      value={category.title}/>
-        );
-
         return (
-            <div>
-                <ul className="category-list">
-                    {categoryList}
-                </ul>
+            <div className="app">
+                <Categories categoriesData={this.state.categories}/>
                 <input type="text"/>
-                <ul className="product-list">
-                    {productList}
-                </ul>
+                <Products productsData={this.state.products}/>
             </div>
         );
     }
