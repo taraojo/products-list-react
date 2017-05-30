@@ -9,7 +9,7 @@
     margin: 0;
 }
 
-.category-list button {
+.category-item__button {
     border: 0;
     padding: 0;
     cursor: pointer;
@@ -17,7 +17,7 @@
     font-size: var(--font);
 }
 
-.category-list button.active {
+.category-item__button--selected h2 {
     font-weight: bold;
     text-decoration: underline;
 }
