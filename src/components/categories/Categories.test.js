@@ -6,7 +6,7 @@ import Jest from 'jest-mock';
 let categories,
     selectCategory,
     clickHandler,
-    category = {id: '1234'},
+    category = {id: '1234', title: 'Snacks'},
     categoriesData = [{
         id: '17eb3f8e-bf7e-11e5-ab63-02fada0dd3b9',
         title: 'Snacks'

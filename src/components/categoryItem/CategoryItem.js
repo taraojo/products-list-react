@@ -4,15 +4,17 @@ import './CategoryItem.css';
 
 class CategoryItem extends Component {
 
-    categorySelectedClass() {
-        return this.props.selected ? 'category-item__button category-item__button--selected' : 'category-item__button';
+    categorySelectedClass(isSelected) {
+        return isSelected ?
+            'category-item__button category-item__button--selected' :
+            'category-item__button';
     }
 
     render() {
         return (
             <li className="category-item">
                 <button onClick={() => this.props.clickHandler(this.props.id)}
-                        className={this.categorySelectedClass()}>
+                        className={this.categorySelectedClass(this.props.selected)}>
                     <h2>
                         {this.props.value}
                     </h2>
