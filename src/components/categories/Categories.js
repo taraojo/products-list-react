@@ -15,7 +15,9 @@ class Categories extends Component {
 
     selectCategory(categoryId) {
         this.setState({selectedCategory: categoryId});
-        this.props.clickHandler(categoryId);
+        if (this.props.clickHandler) {
+            this.props.clickHandler(categoryId);
+        }
     }
 
     render() {
