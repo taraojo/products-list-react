@@ -19,7 +19,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.
+Launches the test runner in the interactive watch mode. You may need to press `a` after this to run all tests. There will be 2 error messages logged to the console when the tests to fail the api calls are run.
 
 ### `npm test -- --coverage`
 
@@ -27,7 +27,7 @@ Calculates code coverage for all test suites.
 
 ## Folder Structure
 
-After creation, your project should look like this:
+The majority of code is in the `src/` folder, with `App` and `index` files in the root of `src/` and all components and related files in `components/`.
 
 ```
 gousto-tech-test/
@@ -49,6 +49,20 @@ gousto-tech-test/
       categoryItem/
       productItem/
       products/
+        Products.css
+        Products.js
+        Products.test.js
       search/
-        Search.js
+```
+
+## Components
+`App.js` is the main wrapper component that renders the `Categories`, `Search` and `Products` components. The `Categories` component is a list that renders individual `CategoryItem` components. Similarly the `Products` component is a list that renders `ProductItem` components, while the `Search` component just renders the search input box.
+
+```text
+App/
+  Categories/
+    CategoryItem
+  Search/
+  Products/
+    ProductItem
 ```
