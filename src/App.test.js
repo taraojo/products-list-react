@@ -1,12 +1,14 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import App from './App';
+import Jest from 'jest-mock';
 
 let app,
     saveCategoryApiData,
     saveProductApiData,
     filterProductsByCategory,
-    filterProductsBySearch;
+    filterProductsBySearch,
+    componentDidMount;
 
 let rawCategoryData = [
     {
@@ -67,6 +69,7 @@ describe('Product item component', () => {
         saveProductApiData = app.instance().saveProductApiData;
         filterProductsByCategory = app.instance().filterProductsByCategory;
         filterProductsBySearch = app.instance().filterProductsBySearch;
+        componentDidMount = app.instance().componentDidMount.bind(app.instance());
     });
 
     it('renders Categories, Search and Products components', () => {
@@ -132,6 +135,32 @@ describe('Product item component', () => {
         expect(app.state().selectedCategory).toEqual('');
         expect(app.state().products).toEqual([rawProductData[1]]);
         expect(products).toEqual([rawProductData[1]]);
+    });
+
+    it('tests failed promise', (done) => {
+        global.fetch = Jest.fn().mockImplementation(() => {
+            return new Promise((resolve, reject) => {
+                reject('an error');
+            });
+        });
+        app.instance().saveCategoryApiData = Jest.fn();
+        componentDidMount();
+        expect(app.instance().saveCategoryApiData).toHaveBeenCalledTimes(0);
+        done();
+    });
+
+    it('tests failed api call', (done) => {
+        global.fetch = Jest.fn().mockImplementation(() => {
+            return new Promise((resolve) => {
+                resolve({
+                    status: 404
+                });
+            });
+        });
+        app.instance().saveCategoryApiData = Jest.fn();
+        componentDidMount();
+        expect(app.instance().saveCategoryApiData).toHaveBeenCalledTimes(0);
+        done();
     });
 });
 
