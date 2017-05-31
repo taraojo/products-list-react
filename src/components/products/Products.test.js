@@ -3,7 +3,7 @@ import {shallow} from 'enzyme';
 import Products from './Products';
 
 let products,
-    product = {id: '1234'},
+    product = {id: '1234', title: 'Borsao Macabeo'},
     productsData = [{
         id: '0009468c-33e9-11e7-b485-02859a19531d',
         title: 'Borsao Macabeo',

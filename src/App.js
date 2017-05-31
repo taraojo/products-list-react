@@ -10,6 +10,7 @@ class App extends Component {
         super(props);
 
         this.saveCategoryApiData = this.saveCategoryApiData.bind(this);
+        this.saveProductApiData = this.saveProductApiData.bind(this);
         this.filterProductsByCategory = this.filterProductsByCategory.bind(this);
         this.filterProductsBySearch = this.filterProductsBySearch.bind(this);
         this.allProducts = [];
@@ -23,11 +24,13 @@ class App extends Component {
     saveCategoryApiData(data) {
         let categories = data.filter(category => !category.hidden);
         this.setState({categories});
+        return categories;
     }
 
     saveProductApiData(data) {
         this.allProducts = data;
         this.setState({products: data});
+        return data;
     }
 
     componentDidMount() {

@@ -15,7 +15,8 @@ describe('Product item component', () => {
     beforeEach(() => {
         productItem = shallow(
             <ProductItem key={product.id}
-                         productInfo={product}/>
+                         title={product.title}
+                         description={product.description}/>
         );
         productDesc = productItem.instance().productDescription;
         productHeaderClasses = productItem.instance().productHeaderClasses;

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import './ProductItem.css';
 
 class ProductItem extends Component {
@@ -19,7 +20,7 @@ class ProductItem extends Component {
         if (!this.state.hidden) {
             return (
                 <div className="product__description">
-                    {this.props.productInfo.description}
+                    {this.props.description}
                 </div>
             );
         }
@@ -37,7 +38,7 @@ class ProductItem extends Component {
             <li className="product">
                 <button className={this.productHeaderClasses()}
                         onClick={this.handleClick}>
-                    {this.props.productInfo.title}
+                    {this.props.title}
                 </button>
 
                 {this.productDescription()}
@@ -45,5 +46,10 @@ class ProductItem extends Component {
         );
     }
 }
+
+ProductItem.propTypes = {
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string
+};
 
 export default ProductItem;
