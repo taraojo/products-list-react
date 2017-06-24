@@ -1,4 +1,4 @@
-#Products list react app
+# Products list react app
 This app lists products in their corresponding categories using the [Gousto](https://www.gousto.co.uk) APIs. The app uses the [create-react-app](https://github.com/facebookincubator/create-react-app) node module.
 
 ## Set up
